@@ -1,3 +1,32 @@
 @charset 'UTF-8';
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Rubik:wght@400;600;700&display=swap');
+@import './reset.css';
 
+/* BASIC ELEMENTS */
+h1 {
+    font-family: 'Bungee Inline', cursive;
+}
+
+/* MAIN */
+main {
+    margin: 20px 15vh;
+}
+
+/* HEADER */
+header nav, header nav div, header nav ul {
+    display: flex;
+    align-items: center;
+}
+
+header nav {
+    justify-content: space-between;
+}
+
+header nav div { gap: 5px; }
+
+header nav ul { gap: 20px; }
+
+header nav a { font-weight: 600; }
+
+.logo {
+    width: 8%;
+}
