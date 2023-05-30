@@ -30,7 +30,7 @@ export function selectAll(selector, parent = document) {
 
 // Print
 export function print(...arg) {
-    console.log(arg);
+    console.log(...arg);
 }
 
 
