@@ -9,6 +9,9 @@ h1 {
 /* MAIN */
 main {
     margin: 20px 15vh;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 /* HEADER */
@@ -30,3 +33,23 @@ header nav a { font-weight: 600; }
 .logo {
     width: 8%;
 }
+
+/* SEARCH SECTION */
+.search-section {
+    display: flex;
+    gap: 15px;
+    
+}
+
+.search-section button {
+    padding: 8px;
+    border-radius: 7px;
+    background-color: #00b4d8;
+}
+button i { 
+    font-size: 1.6rem;
+    color: #FFF;
+}
+.movie-search-input { width: 70%; }
+.city-search-input { width: 30%; }
+

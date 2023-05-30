@@ -8,6 +8,7 @@
     <meta name="keywords" content="HTML, CSS, SEO, web, web development">
     <title>Movie Bookings - Home</title>
     <link rel="stylesheet" href="assets/style/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="assets/script/index.js" type="module"></script>
 </head>
 <body>
@@ -30,9 +31,15 @@
         </header>
 
         <!----- MAIN CONTENT ----->
-        <!-- <section>
+        <div class="search-section">
+            <input type="text" placeholder="Movie" class="movie-search-input">
+            <input type="text" placeholder="City" class="city-search-input">
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        
+        <section class="movie-container">
     
-        </section> -->
+        </section>
     </main>
 </body>
 </html>

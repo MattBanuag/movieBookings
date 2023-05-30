@@ -2,7 +2,7 @@
 import { select, print } from './utilities.js';
 
 // Element selectors
-const dataContainer = select('section');
+const movieContainer = select('.movie-container');
 
 // Fetch dependencies
 const movieUrl = 'https://api.andrespecht.dev/movies';
@@ -19,13 +19,18 @@ function displayMovies(array) {
     
     if(array.length > 0) {
         array.forEach(movie => {
-            movies += `<div>${movie.title}</div>`;
+            movies += `
+                <div>
+                    <img src="${movie.poster}">
+                    <h2>${movie.title}</h2>
+                </div>
+            `;
         });
     } else {
         movies += 'Movies not found.';
     }
 
-    dataContainer.innerHTML = `<div>${movies}</div>`;
+    movieContainer.innerHTML = `<div>${movies}</div>`;
 }
 
 async function getMovies() {
