@@ -11,7 +11,6 @@ h2 { font-weight: 300; }
     flex-direction: column;
     margin-top: 10px;
     width: 30%;
-    border-radius: 6px;
     background-color: #FFF;
 }
 
@@ -25,6 +24,11 @@ h2 { font-weight: 300; }
 .show article:hover {
     cursor: pointer;
     background-color: #DDD;
+}
+
+.not-interactive {
+    background-color: #FFF;
+    cursor: default;
 }
 
 /* MAIN */
@@ -89,9 +93,13 @@ button i {
     gap: 15px;
 }
 
-.suggestions-box {
+.movie-suggestions-box, .city-suggestions-box {
     position: absolute;
     z-index: 1;
+}
+
+.city-suggestions-box {
+    left: 63.5%;
 }
 
 /* FOOTER */

@@ -6,10 +6,13 @@ const body = select('body');
 const movieSearchInput = select('.movie-search-input');
 const citySearchInput = select('.city-search-input');
 const movieContainer = select('.movie-container');
-const suggestionsBox = select('.suggestions-box');
+const movieSuggestionsBox = select('.movie-suggestions-box');
+const citySuggestionsBox = select('.city-suggestions-box');
 
 // Fetch dependencies
 let movieTitles = [];
+let cityNames = [];
+const cityUrl = './assets/json/cities.json';
 const movieUrl = 'https://api.andrespecht.dev/movies';
 const options = {
     method: 'GET',
@@ -39,39 +42,44 @@ function displayMovies(array) {
     movieContainer.innerHTML = `${movies}`;
 }
 
-async function getMovies() {
+async function getData(url) {
     try {
-        const response = await fetch(movieUrl, options);
+        const response = await fetch(url, options);
 
         if(!response.ok) {
             throw new Error(`${response.statusText} (${response.status})`);
         }
 
-        const movies = await response.json();
-        displayMovies(movies.response);
+        const data = await response.json();
+        return data.response;
     } catch(error) {
         print(error);
     }
 }
 
-function autoCompleteForMovies() {
-    let searchString = movieSearchInput.value.toLowerCase();
+function populateCityInput(array, inputArray) {
+    array.forEach(item => {
+        inputArray.push(item.title);
+    })
+}
+
+function autoComplete(input, array, suggestionsBox) {
+    let searchString = input.value.toLowerCase();
     suggestionsBox.innerHTML = '';
 
-    const filteredMovieTitles = movieTitles.filter(title => {
+    const filteredData = array.filter(title => {
         return title.toLowerCase().match(searchString);
     });
 
-    if(filteredMovieTitles.length == 0 || movieSearchInput.value == '') {
+    if(filteredData.length == 0 || input.value == '') {
         suggestionsBox.classList.add('show');
         suggestionsBox.innerHTML = `
             <article>
-                <p>Movie not found.</p>
+                <p class="not-interactive">Not found.</p>
             </article>
-        `;
-                    
-    } else {
-        filteredMovieTitles.forEach(title => {
+        `;          
+    }  else {
+        filteredData.forEach(title => {
             suggestionsBox.classList.add('show');
             suggestionsBox.innerHTML += `
                 <article>
@@ -79,28 +87,31 @@ function autoCompleteForMovies() {
                 </article>
             `;
 
-            const searchItems = selectAll(`.search-item`);
+            const searchItems = selectAll('.search-item');
             searchItems.forEach(item => {
                 item.addEventListener('click', () => {
-                    movieSearchInput.value = `${item.innerHTML}`;
+                    input.value = `${item.innerHTML}`;
                 });
             });
-            
-        });
+        });    
     }
 }
 
-function autoCompleteForCities() {
-
-}
-
 function closeSuggestionBox() {
-    suggestionsBox.classList.remove('show');
-    suggestionsBox.innerHTML = '';
+    movieSuggestionsBox.classList.remove('show');
+    movieSuggestionsBox.innerHTML = '';
+    citySuggestionsBox.classList.remove('show');
+    citySuggestionsBox.innerHTML = '';
 }
 
 // Event Handler Functions
-movieSearchInput.addEventListener('keyup', (autoCompleteForMovies));
+movieSearchInput.addEventListener('keyup', function() {
+    autoComplete(movieSearchInput, movieTitles, movieSuggestionsBox);
+});
+citySearchInput.addEventListener('keyup', function() {
+    autoComplete(citySearchInput, cityNames, citySuggestionsBox);
+});
 body.addEventListener('click', (closeSuggestionBox));
 
-getMovies();
+displayMovies(await getData(movieUrl));
+populateCityInput(await getData(cityUrl), cityNames);
