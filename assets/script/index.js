@@ -54,8 +54,7 @@ async function getMovies() {
     }
 }
 
-// Event Handler Functions
-movieSearchInput.addEventListener('keyup', () => {
+function autoCompleteForMovies() {
     let searchString = movieSearchInput.value.toLowerCase();
     suggestionsBox.innerHTML = '';
 
@@ -89,11 +88,19 @@ movieSearchInput.addEventListener('keyup', () => {
             
         });
     }
-});
+}
 
-body.addEventListener('click', () => {
+function autoCompleteForCities() {
+
+}
+
+function closeSuggestionBox() {
     suggestionsBox.classList.remove('show');
     suggestionsBox.innerHTML = '';
-});
+}
+
+// Event Handler Functions
+movieSearchInput.addEventListener('keyup', (autoCompleteForMovies));
+body.addEventListener('click', (closeSuggestionBox));
 
 getMovies();
