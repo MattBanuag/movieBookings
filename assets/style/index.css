@@ -9,22 +9,21 @@ h2 { font-weight: 300; }
 .show {
     display: flex;
     flex-direction: column;
-    gap: 15px;
     margin-top: 10px;
     width: 30%;
-    padding: 10px;
     border-radius: 6px;
     background-color: #FFF;
 }
 
 .show article { transition: ease-in-out 0.2s; }
 
-.show article p { color: #111; }
+.show article p { 
+    padding: 10px;
+    color: #111; 
+}
 
 .show article:hover {
-    padding: 6px;
     cursor: pointer;
-    border-radius: 5px;
     background-color: #DDD;
 }
 

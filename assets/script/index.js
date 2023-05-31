@@ -1,5 +1,5 @@
 'use strict';
-import { select, print } from './utilities.js';
+import { select, print, selectAll } from './utilities.js';
 
 // Element selectors
 const body = select('body');
@@ -76,9 +76,17 @@ movieSearchInput.addEventListener('keyup', () => {
             suggestionsBox.classList.add('show');
             suggestionsBox.innerHTML += `
                 <article>
-                    <p>${title}</p>
+                    <p class="search-item">${title}</p>
                 </article>
             `;
+
+            const searchItems = selectAll(`.search-item`);
+            searchItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    movieSearchInput.value = `${item.innerHTML}`;
+                });
+            });
+            
         });
     }
 });
