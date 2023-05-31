@@ -5,6 +5,29 @@
 h1 { font-family: 'Bungee Inline', cursive; }
 h2 { font-weight: 300; }
 
+/* DISPLAY CLASS */
+.show {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+    width: 30%;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #FFF;
+}
+
+.show article { transition: ease-in-out 0.2s; }
+
+.show article p { color: #111; }
+
+.show article:hover {
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #DDD;
+}
+
 /* MAIN */
 main {
     margin: 20px 15vh;
@@ -57,6 +80,7 @@ button i {
     display: grid;
     grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 50px;
+    position: relative;
 }
 
 .movie-container div {
@@ -64,6 +88,11 @@ button i {
     flex-direction: column;
     align-items: center;
     gap: 15px;
+}
+
+.suggestions-box {
+    position: absolute;
+    z-index: 1;
 }
 
 /* FOOTER */

@@ -2,14 +2,18 @@
 import { select, print } from './utilities.js';
 
 // Element selectors
+const body = select('body');
+const movieSearchInput = select('.movie-search-input');
+const citySearchInput = select('.city-search-input');
 const movieContainer = select('.movie-container');
+const suggestionsBox = select('.suggestions-box');
 
 // Fetch dependencies
+let movieTitles = [];
 const movieUrl = 'https://api.andrespecht.dev/movies';
 const options = {
     method: 'GET',
-    // "I want a json type of data"
-    // Cross Origin Request
+    headers: { 'Content-Type': 'application/json; charset=UTF-8'},
     mode: 'cors'
 };
 
@@ -25,6 +29,8 @@ function displayMovies(array) {
                     <h2>${movie.title}</h2>
                 </div>
             `;
+
+            movieTitles.push(movie.title);
         });
     } else {
         movies += 'Movies not found.';
@@ -47,5 +53,39 @@ async function getMovies() {
         print(error);
     }
 }
+
+// Event Handler Functions
+movieSearchInput.addEventListener('keyup', () => {
+    let searchString = movieSearchInput.value.toLowerCase();
+    suggestionsBox.innerHTML = '';
+
+    const filteredMovieTitles = movieTitles.filter(title => {
+        return title.toLowerCase().match(searchString);
+    });
+
+    if(filteredMovieTitles.length == 0 || movieSearchInput.value == '') {
+        suggestionsBox.classList.add('show');
+        suggestionsBox.innerHTML = `
+            <article>
+                <p>Movie not found.</p>
+            </article>
+        `;
+                    
+    } else {
+        filteredMovieTitles.forEach(title => {
+            suggestionsBox.classList.add('show');
+            suggestionsBox.innerHTML += `
+                <article>
+                    <p>${title}</p>
+                </article>
+            `;
+        });
+    }
+});
+
+body.addEventListener('click', () => {
+    suggestionsBox.classList.remove('show');
+    suggestionsBox.innerHTML = '';
+});
 
 getMovies();
