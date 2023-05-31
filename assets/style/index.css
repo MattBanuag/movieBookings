@@ -2,9 +2,8 @@
 @import './reset.css';
 
 /* BASIC ELEMENTS */
-h1 {
-    font-family: 'Bungee Inline', cursive;
-}
+h1 { font-family: 'Bungee Inline', cursive; }
+h2 { font-weight: 300; }
 
 /* MAIN */
 main {
@@ -53,3 +52,23 @@ button i {
 .movie-search-input { width: 70%; }
 .city-search-input { width: 30%; }
 
+/* MOVIE CONTAINER */
+.movie-container {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 50px;
+}
+
+.movie-container div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* FOOTER */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

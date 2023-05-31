@@ -30,7 +30,7 @@ function displayMovies(array) {
         movies += 'Movies not found.';
     }
 
-    movieContainer.innerHTML = `<div>${movies}</div>`;
+    movieContainer.innerHTML = `${movies}`;
 }
 
 async function getMovies() {
