@@ -1,3 +1,110 @@
 @charset 'UTF-8';
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Rubik:wght@400;600;700&display=swap');
+@import './reset.css';
 
+/* BASIC ELEMENTS */
+h1 { font-family: 'Bungee Inline', cursive; }
+h2 { font-weight: 300; }
+
+/* DISPLAY CLASS */
+.show {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    width: 30%;
+    background-color: #FFF;
+}
+
+.show article { transition: ease-in-out 0.2s; }
+
+.show article p { 
+    padding: 10px;
+    color: #111; 
+}
+
+.show article:hover {
+    cursor: pointer;
+    background-color: #DDD;
+}
+
+.not-interactive {
+    background-color: #FFF;
+    cursor: default;
+}
+
+/* MAIN */
+main {
+    margin: 20px 15vh;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* HEADER */
+header nav, header nav div, header nav ul {
+    display: flex;
+    align-items: center;
+}
+
+header nav {
+    justify-content: space-between;
+}
+
+header nav div { gap: 5px; }
+
+header nav ul { gap: 20px; }
+
+header nav a { font-weight: 600; }
+
+.logo {
+    width: 8%;
+}
+
+/* SEARCH SECTION */
+.search-section {
+    display: flex;
+    gap: 15px;
+    
+}
+
+.search-section button {
+    padding: 8px;
+    border-radius: 7px;
+    background-color: #00b4d8;
+}
+button i { 
+    font-size: 1.6rem;
+    color: #FFF;
+}
+.movie-search-input { width: 70%; }
+.city-search-input { width: 30%; }
+
+/* MOVIE CONTAINER */
+.movie-container {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 50px;
+    position: relative;
+}
+
+.movie-container div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.movie-suggestions-box, .city-suggestions-box {
+    position: absolute;
+    z-index: 1;
+}
+
+.city-suggestions-box {
+    left: 63.5%;
+}
+
+/* FOOTER */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
